@@ -5,11 +5,19 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+          cache: maven
       - name: Build with Maven
         run: mvn clean install
       - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v5
+        run: |
+          docker build . -t ghcr.io/paduxe/helloworld-images:latest
+          docker push ghcr.io/balo282/helloworld-images:latest
         with:
           github-token: ${{ secrets.GH_TOKEN }}
-          image-name: balo282/helloworld-images
+          image-name: paduxe/helloworld-images
           image-tag: latest
