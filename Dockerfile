@@ -1,3 +1,4 @@
 FROM openjdk:11
-COPY target/springbootdocker-0.0.1-SNAPSHOT.jar hello-world-1.0.0.jar
-ENTRYPOINT ["java","-jar","/hello-world-1.0.0.jar"]
+EXPOSE 8080
+ADD target/helloworld-images.jar helloworld-images.jar
+ENTRYPOINT ["java","-jar","/helloworld-images-1.0.0.jar"]

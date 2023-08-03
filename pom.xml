@@ -60,6 +60,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>helloworld-images</finalName>
 	</build>
 
 </project>
