@@ -16,9 +16,9 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ghcr.io/paduxe/helloworld-images:latest
-      - name: Create mnt folder and run docker compose
-        run: |
-          mkdir /mnt/studydevops/
-          mv docker-compose.yml /mnt/studydevops/
-          docker ps
-          docker-compose up -d
+#      - name: Create mnt folder and run docker compose
+#        run: |
+#          mkdir /mnt/studydevops/
+#          mv docker-compose.yml /mnt/studydevops/
+#          docker ps
+#          docker-compose up -d
