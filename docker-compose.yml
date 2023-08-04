@@ -2,7 +2,7 @@ version: '2'
 
 services:
   app:
-    image: 'hello-world:latest'
+    image: 'helloworld-images:latest'
     build:
       context: .
     container_name: app
