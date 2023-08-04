@@ -6,7 +6,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build with Maven
-        run: mvn clean install
+        run: |
+          whereis mvn
+          whereis java
+          mvn clean install
       - name: Github login
         run: |
           docker login --username balo282 --password ${{ secrets.GH_TOKEN }} ghcr.io
