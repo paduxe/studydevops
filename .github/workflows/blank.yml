@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build with Maven
         run: mvn clean install
       - name: Github login
@@ -16,3 +16,9 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ghcr.io/paduxe/helloworld-images:latest
+      - name: Create mnt folder and run docker compose
+        run: |
+          mkdir /mnt/studydevops/
+          mv docker-compose.yml /mnt/studydevops/
+          docker ps
+          docker-compose up -d
