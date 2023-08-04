@@ -22,10 +22,10 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ghcr.io/paduxe/helloworld-images:latest
-        with:
-          github-token: ${{ secrets.GH_TOKEN }}
-          image-name: paduxe/helloworld-images
-          image-tag: latest
+#        with:
+#          github-token: ${{ secrets.GH_TOKEN }}
+#          image-name: paduxe/helloworld-images
+#          image-tag: latest
       - name: Create mnt folder and run docker compose
         run: |
           mkdir /mnt/studydevops/
