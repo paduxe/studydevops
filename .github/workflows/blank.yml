@@ -5,8 +5,6 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v3
-      - name: Install curl (for nektos/act local CI testing)
-        run: apt-get update && apt-get install build-essential curl pkg-config openssl -y
       - name: Download Maven
         run: |
           curl -sL https://www-eu.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip -o maven.zip
