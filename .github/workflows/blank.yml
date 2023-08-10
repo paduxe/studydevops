@@ -31,5 +31,7 @@ jobs:
           mkdir -p /mnt/studydevops/
           mv docker-compose.yml /mnt/studydevops/
           cd /mnt/studydevops/
+          pwd
+          ls -a
           docker ps
           docker-compose up -d
