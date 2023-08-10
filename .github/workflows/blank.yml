@@ -30,5 +30,6 @@ jobs:
         run: |
           mkdir -p /mnt/studydevops/
           mv docker-compose.yml /mnt/studydevops/
+          cd /mnt/studydevops/
           docker ps
           docker-compose up -d
