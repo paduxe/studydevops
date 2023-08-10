@@ -4,25 +4,25 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-          cache: maven
+      - uses: actions/checkout@v3
       - name: Set up Maven
         uses: stCarolas/setup-maven@v4.5
         with:
           maven-version: 3.8.2
       - name: Build with Maven
         run: mvn clean install
-      - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v5
-        with:
-          image: balo282/helloworld-images
-          tags: latest
-          registry: docker.io
-          dockerfile: Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Github login
+        run: |
+          docker login --username balo282 --password ${{ secrets.GH_TOKEN }} ghcr.io
+      - name: Build Docker image
+        run: |
+          docker build . -t ghcr.io/paduxe/helloworld-images:latest
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/paduxe/helloworld-images:latest
+      - name: Create mnt folder and run docker compose
+        run: |
+          mkdir /mnt/studydevops/
+          mv docker-compose.yml /mnt/studydevops/
+          docker ps
+          docker-compose up -d
