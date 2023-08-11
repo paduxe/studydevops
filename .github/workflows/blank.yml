@@ -29,8 +29,8 @@ jobs:
       - name: Create mnt folder and run docker compose
         run: |
           mkdir -p /mnt/studydevops/
-          mv Dockerfile /mnt/studydevops/
           mv docker-compose.yml /mnt/studydevops/
+          pwd
           cd /mnt/studydevops/
           pwd
           ls -a

@@ -1,4 +1,6 @@
 FROM openjdk:11
 EXPOSE 8080
-WORKDIR /mnt/studydevops
-COPY . /mnt/studydevops
+RUN mkdir -p /app/studydevops
+WORKDIR /app/studydevops
+COPY ./target/helloworld-images.jar /app/studydevops/helloworld-images.jar
+ENTRYPOINT ["java","-jar","/app/studydevops/helloworld-images.jar"]
