@@ -3,8 +3,6 @@ version: '2'
 services:
   app:
     image: 'ghcr.io/paduxe/helloworld-images:latest'
-    build:
-      context: .
     container_name: app
     depends_on:
       - db
