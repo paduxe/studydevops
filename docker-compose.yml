@@ -1,18 +1,7 @@
 version: "3.8"
 
 services:
-  mysqldb:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_DATABASE=tutorial_db
-    ports:
-      - 3306:3306
-    volumes:
-      - db:/var/lib/mysql
   app:
-    depends_on:
-      - mysqldb
     image: 'ghcr.io/paduxe/helloworld-images:latest'
     restart: on-failure
     ports:
@@ -23,10 +12,5 @@ services:
         "spring.datasource.username" : "root",
         "spring.datasource.password" : "123456",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-        "spring.jpa.hibernate.ddl-auto" : "update"
+        "spring.jpa.hibernate.ddl-auto" : "create"
       }'
-    volumes:
-      - .m2:/root/.m2
-
-volumes:
-  db:
