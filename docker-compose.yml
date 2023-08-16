@@ -3,7 +3,6 @@ version: "3.8"
 services:
   mysqldb:
     image: mysql:5.7
-    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=tutorial_db
@@ -28,8 +27,6 @@ services:
       }'
     volumes:
       - .m2:/root/.m2
-    stdin_open: true
-    tty: true
 
 volumes:
   db:
