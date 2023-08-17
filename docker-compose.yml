@@ -28,26 +28,6 @@ services:
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
         "spring.jpa.hibernate.ddl-auto" : "create"
       }'
-    volumes:
-      - .m2:/root/.m2
-    stdin_open: true
-    tty: true
-    networks: # Networks to join (Services on the same network can communicate with each other using their name)
-      - backend
-      - frontend
-    
-  app-client:
-    ports:
-      - "9090:80" # Map the exposed port 80 on the container to port 9090 on the host machine
-    restart: always
-    depends_on:
-      - app-server
-    networks:
-      - frontend
 
 volumes:
   db:
-
-networks:
-  backend:
-  frontend:
