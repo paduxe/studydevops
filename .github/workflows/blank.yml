@@ -19,8 +19,8 @@ jobs:
         run: mvn clean install
       - name: Github login
         run: |
-#          docker login --username balo282 --password-stdin ${{ secrets.GH_TOKEN }} ghcr.io
-          docker login --username balo282 --password-stdin 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 ghcr.io
+          docker login --username balo282 --password-stdin ${{ secrets.GH_TOKEN }} ghcr.io
+#          docker login --username balo282 --password-stdin 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 ghcr.io
       - name: Build Docker image
         run: |
           docker build . -t ghcr.io/paduxe/helloworld-images:latest
