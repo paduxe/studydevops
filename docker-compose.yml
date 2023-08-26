@@ -1,7 +1,9 @@
 version: "3.8"
-
+networks:
+  study-network:
 services:
   mysqldb:
+    container_name: mysql5.7
     image: mysql:5.7
     restart: unless-stopped
     environment:
@@ -11,21 +13,29 @@ services:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
-  app-server:
+    networks:
+      - study-network
+  app:
+    container_name: app-server
     depends_on:
       - mysqldb
-    image: 'ghcr.io/paduxe/helloworld-images:latest'
-    restart: on-failure
+    build: .
     ports:
-      - 8080:8080
+      - 9090:9090
     environment:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/tutorial_db?useSSL=false",
         "spring.datasource.username" : "root",
         "spring.datasource.password" : "123456",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-        "spring.jpa.hibernate.ddl-auto" : "create"
+        "spring.jpa.hibernate.ddl-auto" : "update"
       }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+    networks:
+      - study-network
 
 volumes:
   db:
